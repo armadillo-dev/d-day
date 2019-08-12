@@ -5,6 +5,7 @@
         v-for="dDay in dDays"
         :key="dDay.id"
         :d-day="dDay"
+        @click:remove="onClickRemove"
         @click:reset="onClickReset"
       />
     </v-layout>
@@ -44,6 +45,13 @@ export default class DDayList extends Vue {
 
   @dDayStore.Action(ActionTypes.ResetDDay)
   resetDDay
+
+  @dDayStore.Action(ActionTypes.RemoveDDay)
+  removeDDay
+
+  onClickRemove (dDay: DDay): void {
+    this.removeDDay(dDay)
+  }
 
   onClickReset (dDay: DDay): void {
     this.resetDDay(dDay)

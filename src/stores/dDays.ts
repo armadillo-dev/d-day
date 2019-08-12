@@ -15,12 +15,14 @@ export enum ActionTypes {
   FetchDDays = 'FETCH_D_DAYS',
   AddDDay = 'ADD_D_DAY',
   ResetDDay = 'RESET_D_DAY',
+  RemoveDDay = 'REMOVE_D_DAY',
 }
 
 export enum MutationTypes {
   SetDDays = 'SET_D_DAYS',
   AddDDay = 'ADD_D_DAY',
   SetDDay = 'SET_D_DAY',
+  RemoveDDay = 'REMOVE_D_DAY',
 }
 
 export const initialState: DDayState = {
@@ -51,6 +53,14 @@ export const actions: ActionTree<DDayState, RootState> = {
     }
 
     commit(MutationTypes.SetDDay, dDay)
+    setItem('dDays', state.dDays)
+  },
+
+  [ActionTypes.RemoveDDay] ({ commit, state }, payload: DDay) {
+    const dDay = state.dDays.find(dDay => dDay.id === payload.id)
+
+    commit(MutationTypes.RemoveDDay, dDay)
+    setItem('dDays', state.dDays)
   }
 }
 
@@ -66,6 +76,10 @@ export const mutations: MutationTree<DDayState> = {
 
   [MutationTypes.SetDDays] (state, payload: DDay[]) {
     state.dDays = payload
+  },
+
+  [MutationTypes.RemoveDDay] (state, payload: DDay) {
+    state.dDays = state.dDays.filter(dDay => dDay.id !== payload.id)
   }
 }
 

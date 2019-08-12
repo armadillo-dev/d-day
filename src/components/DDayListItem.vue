@@ -4,9 +4,18 @@
       <v-card-title>
         <strong class="display-2">{{ formattedDayCount }}</strong>
         <v-spacer />
-        <v-btn icon>
-          <v-icon>more_vert</v-icon>
-        </v-btn>
+        <v-menu offset-y>
+          <template #activator="{ on }">
+            <v-btn icon v-on="on">
+              <v-icon>more_vert</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item @click="onClickRemove">
+              <v-list-item-title>Remove</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </v-card-title>
       <v-list-item two-line>
         <v-list-item-content>
@@ -56,6 +65,11 @@ export default class DDayListItem extends Vue {
 
     @Emit('click:reset')
     onClickReset (): DDay {
+      return this.dDay
+    }
+
+    @Emit('click:remove')
+    onClickRemove (): DDay {
       return this.dDay
     }
 }
