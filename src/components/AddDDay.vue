@@ -88,7 +88,7 @@ export default class AddDDay extends Vue {
   isShownDialog: boolean = false
 
   async onClickSubmit () {
-    if (!this.$refs.form.validate()) return
+    if (!(this.$refs.form as any).validate()) return
 
     const dDay: DDay = {
       id: generateUUID(),
@@ -101,7 +101,7 @@ export default class AddDDay extends Vue {
   }
 
   onClickOkDatepicker () {
-    this.$refs.dialog.save(this.date)
+    (this.$refs.dialog as any).save(this.date)
   }
 
   onClickCloseDatepicker () {
