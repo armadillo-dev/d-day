@@ -37,7 +37,7 @@ export const getters: GetterTree<DDayState, RootState> = {
 
 export const actions: ActionTree<DDayState, RootState> = {
   [ActionTypes.FetchDDays] ({ commit }) {
-    const dDays = getItem('dDays')
+    const dDays = getItem('dDays') || []
     commit(MutationTypes.SetDDays, dDays)
   },
 
