@@ -19,9 +19,7 @@ export const dateDifference = (fromDate: string | Date, toDate: string | Date): 
   const MS_PER_DAY: number = 1000 * 60 * 60 * 24
   const convertedFrom: Date = typeof fromDate === 'string' ? new Date(fromDate) : fromDate
   const convertedTo: Date = typeof toDate === 'string' ? new Date(toDate) : toDate
-
   const diffTime: number = convertedTo.getTime() - convertedFrom.getTime()
-  const diffDays: number = Math.ceil(diffTime / MS_PER_DAY)
 
-  return diffDays
+  return Math.ceil(diffTime / MS_PER_DAY)
 }

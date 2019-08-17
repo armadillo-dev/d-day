@@ -3,7 +3,7 @@ import DDayState from '@/types/interfaces/DDayState'
 import RootState from '@/types/interfaces/RootState'
 import DDay from '@/types/interfaces/DDay'
 import { getItem, setItem } from '@/utils/storage'
-import { formatDate } from '@/helpers/dateHelper'
+import { formatDate } from '@/utils/dateUtils'
 
 export const moduleName = 'dDays'
 

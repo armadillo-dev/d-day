@@ -43,7 +43,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 import DDay from '@/types/interfaces/DDay'
-import { dateDifference, formatDate } from '@/helpers/dateHelper'
+import { dateDifference, formatDate } from '@/utils/dateUtils'
 
 @Component
 export default class DDayListItem extends Vue {
