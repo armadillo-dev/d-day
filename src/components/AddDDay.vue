@@ -65,13 +65,16 @@ import { namespace } from 'vuex-class'
 import { ActionTypes, moduleName } from '@/stores/dDays'
 import DDay from '@/types/interfaces/DDay'
 import generateUUID from '@/utils/generateUUID'
+import eventBus from '@/plugins/eventBus'
+import EventBusEvent from '@/types/enums/EventBusEvent'
+import { ShowFeedbackMessagePayload } from '@/types/interfaces/EventBusPayload'
 
 const dDayStore = namespace(moduleName)
 
 @Component
 export default class AddDDay extends Vue {
   @dDayStore.Action(ActionTypes.AddDDay)
-  addDDay
+  addDDay: (dDay: DDay) => void
 
   title: string = ''
   date: string = ''
@@ -96,7 +99,12 @@ export default class AddDDay extends Vue {
       date: this.date
     }
 
+    const feedbackMessagePayload: ShowFeedbackMessagePayload = {
+      message: `Add ${dDay.title}`
+    }
+
     this.addDDay(dDay)
+    eventBus.$emit(EventBusEvent.ShowFeedbackMessage, feedbackMessagePayload)
     await this.$router.push('/')
   }
 

@@ -31,6 +31,9 @@ import { namespace } from 'vuex-class'
 import DDayListItem from './DDayListItem.vue'
 import DDay from '../types/interfaces/DDay'
 import { ActionTypes, GetterTypes, moduleName } from '@/stores/dDays'
+import eventBus from '@/plugins/eventBus'
+import EventBusEvent from '@/types/enums/EventBusEvent'
+import { ShowFeedbackMessagePayload } from '@/types/interfaces/EventBusPayload'
 
 const dDayStore = namespace(moduleName)
 
@@ -44,17 +47,24 @@ export default class DDayList extends Vue {
   dDays?: DDay[]
 
   @dDayStore.Action(ActionTypes.ResetDDay)
-  resetDDay
+  resetDDay: (dDay: DDay) => void
 
   @dDayStore.Action(ActionTypes.RemoveDDay)
-  removeDDay
+  removeDDay: (dDay: DDay) => void
 
   onClickRemove (dDay: DDay): void {
     this.removeDDay(dDay)
+    this.showFeedbackMessage(`Remove ${dDay.title}`)
   }
 
   onClickReset (dDay: DDay): void {
     this.resetDDay(dDay)
+    this.showFeedbackMessage(`Reset ${dDay.title}`)
+  }
+
+  showFeedbackMessage (message: string): void {
+    const feedbackMessagePayload: ShowFeedbackMessagePayload = { message }
+    eventBus.$emit(EventBusEvent.ShowFeedbackMessage, feedbackMessagePayload)
   }
 }
 </script>
