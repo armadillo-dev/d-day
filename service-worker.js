@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/d-day/precache-manifest.673760da9e8dd4214f07e7c0572ae183.js"
+  "/d-day/precache-manifest.24322f46aec32c9fbbe6d19fcf2e880f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "d-day"});
