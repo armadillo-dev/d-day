@@ -6,7 +6,7 @@
     </v-content>
     <v-snackbar
       v-model="isShowFeedbackMessage"
-      :timeout="2000"
+      :timeout="1000"
     >
       {{ feedbackMessage }}
       <v-btn
