@@ -68,6 +68,7 @@ import generateUUID from '@/utils/generateUUID'
 import eventBus from '@/plugins/eventBus'
 import EventBusEvent from '@/types/enums/EventBusEvent'
 import { ShowFeedbackMessagePayload } from '@/types/interfaces/EventBusPayload'
+import { formatDate } from '@/utils/dateUtils'
 
 const dDayStore = namespace(moduleName)
 
@@ -77,7 +78,7 @@ export default class AddDDay extends Vue {
   addDDay: (dDay: DDay) => void
 
   title: string = ''
-  date: string = ''
+  date: string = formatDate(new Date())
 
   isValid: boolean = false
   titleRules = [
