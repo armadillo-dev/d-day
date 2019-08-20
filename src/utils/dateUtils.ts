@@ -23,3 +23,10 @@ export const dateDifference = (fromDate: string | Date, toDate: string | Date): 
 
   return Math.ceil(diffTime / MS_PER_DAY)
 }
+
+export const addDate = (date: string | Date, addDays: number): string => {
+  const MS_PER_DAY: number = 1000 * 60 * 60 * 24
+  const convertedDate: Date = typeof date === 'string' ? new Date(date) : date
+  const addedDate: Date = new Date(convertedDate.setTime(convertedDate.getTime() + addDays * MS_PER_DAY))
+  return formatDate(addedDate)
+}

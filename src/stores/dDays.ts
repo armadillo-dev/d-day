@@ -4,7 +4,6 @@ import RootState from '@/types/interfaces/RootState'
 import DDay from '@/types/interfaces/DDay'
 import { getItem, setItem } from '@/utils/storage'
 import { formatDate } from '@/utils/dateUtils'
-import { Getter } from 'vuex-class'
 
 export const moduleName = 'dDays'
 

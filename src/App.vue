@@ -60,16 +60,13 @@ export default class App extends Vue {
 
   created (): void {
     eventBus.$on(EventBusEvent.ShowFeedbackMessage, this.showFeedbackMessage)
+    this.fetchTheme()
+    this.fetchDDays()
+    this.$vuetify.theme.dark = this.theme === Theme.Dark
   }
 
   beforeDestroy (): void {
     eventBus.$off(EventBusEvent.ShowFeedbackMessage, this.showFeedbackMessage)
-  }
-
-  mounted (): void {
-    this.fetchTheme()
-    this.fetchDDays()
-    this.$vuetify.theme.dark = this.theme === Theme.Dark
   }
 
   showFeedbackMessage ({ message }: ShowFeedbackMessagePayload) : void {

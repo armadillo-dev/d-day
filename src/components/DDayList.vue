@@ -1,6 +1,6 @@
 <template>
   <v-container fluid grid-list-md>
-    <v-row wrap class="ma-2">
+    <v-row wrap>
       <d-day-list-item
         v-for="dDay in dDays"
         :key="dDay.id"
