@@ -1,5 +1,5 @@
 <template>
-  <v-flex xs12>
+  <v-col cols="12">
     <v-card outlined>
       <v-card-title>
         <strong class="display-2">{{ formattedDayCount }}</strong>
@@ -24,7 +24,12 @@
         </v-list-item-content>
       </v-list-item>
       <v-card-actions>
-        <v-btn text color="primary">
+        <v-btn
+          text
+          color="primary"
+          link
+          :to="`/detail/${dDay.id}`"
+        >
           Detail
         </v-btn>
         <v-btn
@@ -37,7 +42,7 @@
         <v-spacer />
       </v-card-actions>
     </v-card>
-  </v-flex>
+  </v-col>
 </template>
 
 <script lang="ts">

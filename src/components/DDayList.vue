@@ -1,6 +1,6 @@
 <template>
   <v-container fluid grid-list-md>
-    <v-layout wrap class="ma-2">
+    <v-row wrap class="ma-2">
       <d-day-list-item
         v-for="dDay in dDays"
         :key="dDay.id"
@@ -8,7 +8,7 @@
         @click:remove="onClickRemove"
         @click:reset="onClickReset"
       />
-    </v-layout>
+    </v-row>
     <v-btn
       fab
       color="accent"
@@ -28,6 +28,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import { BindingHelpers } from 'vuex-class/lib/bindings'
 import DDayListItem from './DDayListItem.vue'
 import DDay from '../types/interfaces/DDay'
 import { ActionTypes, GetterTypes, moduleName } from '@/stores/dDays'
@@ -35,7 +36,7 @@ import eventBus from '@/plugins/eventBus'
 import EventBusEvent from '@/types/enums/EventBusEvent'
 import { ShowFeedbackMessagePayload } from '@/types/interfaces/EventBusPayload'
 
-const dDayStore = namespace(moduleName)
+const dDayStore: BindingHelpers = namespace(moduleName)
 
 @Component({
   components: {

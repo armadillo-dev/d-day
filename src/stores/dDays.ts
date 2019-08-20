@@ -4,10 +4,12 @@ import RootState from '@/types/interfaces/RootState'
 import DDay from '@/types/interfaces/DDay'
 import { getItem, setItem } from '@/utils/storage'
 import { formatDate } from '@/utils/dateUtils'
+import { Getter } from 'vuex-class'
 
 export const moduleName = 'dDays'
 
 export enum GetterTypes {
+  GetDDay = 'GET_D_DAY',
   GetDDays = 'GET_D_DAYS',
 }
 
@@ -30,6 +32,10 @@ export const initialState: DDayState = {
 }
 
 export const getters: GetterTree<DDayState, RootState> = {
+  [GetterTypes.GetDDay]: state => (id: string) => {
+    return state.dDays.find(dDay => dDay.id === id)
+  },
+
   [GetterTypes.GetDDays] (state): DDay[] {
     return state.dDays
   }

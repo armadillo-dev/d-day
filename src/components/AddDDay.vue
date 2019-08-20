@@ -1,16 +1,16 @@
 <template>
   <v-container fluid grid-list-lg>
     <v-form ref="form" v-model="isValid">
-      <v-layout column>
-        <v-flex>
+      <v-row>
+        <v-col cols="12">
           <v-text-field
             v-model="title"
             label="Title"
             required
             :rules="titleRules"
           />
-        </v-flex>
-        <v-flex>
+        </v-col>
+        <v-col cols="12">
           <v-dialog
             ref="dialog"
             v-model="isShownDialog"
@@ -35,8 +35,8 @@
               <v-btn text color="primary" @click="onClickOkDatepicker">OK</v-btn>
             </v-date-picker>
           </v-dialog>
-        </v-flex>
-        <v-flex>
+        </v-col>
+        <v-col cols="12">
           <v-btn
             block
             color="primary"
@@ -44,8 +44,8 @@
           >
             Submit
           </v-btn>
-        </v-flex>
-        <v-flex>
+        </v-col>
+        <v-col cols="12">
           <v-btn
             block
             link
@@ -53,8 +53,8 @@
           >
             Cancel
           </v-btn>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-form>
   </v-container>
 </template>
@@ -62,6 +62,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import { BindingHelpers } from 'vuex-class/lib/bindings'
 import { ActionTypes, moduleName } from '@/stores/dDays'
 import DDay from '@/types/interfaces/DDay'
 import generateUUID from '@/utils/generateUUID'
@@ -70,7 +71,7 @@ import EventBusEvent from '@/types/enums/EventBusEvent'
 import { ShowFeedbackMessagePayload } from '@/types/interfaces/EventBusPayload'
 import { formatDate } from '@/utils/dateUtils'
 
-const dDayStore = namespace(moduleName)
+const dDayStore: BindingHelpers = namespace(moduleName)
 
 @Component
 export default class AddDDay extends Vue {
